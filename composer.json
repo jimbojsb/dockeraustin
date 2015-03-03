@@ -1,0 +1,10 @@
+{
+  "require": {
+    "jimbojsb/adore": "dev-master"
+  },
+  "autoload": {
+    "psr4": {
+      "MyApp": "src/"
+    }
+  }
+}
