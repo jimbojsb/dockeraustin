@@ -1,7 +1,7 @@
 <?php
 namespace MyApp\Responder;
 
-class DefaultResponse
+class DefaultResponder
 {
     use \Adore\ResponderTrait;
 

@@ -35,6 +35,7 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 # Clean up APT when done.
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
+ADD docker/nginx.conf /etc/nginx/sites-available/default
 
 # enable nginx and php5-fpm runit
 ADD docker/nginx.sh /etc/service/nginx/run
