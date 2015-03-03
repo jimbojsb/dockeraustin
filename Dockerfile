@@ -12,10 +12,16 @@ ENV DEBIAN_FRONTEND noninteractive
 RUN echo "America/Chicago" > /etc/timezone
 RUN dpkg-reconfigure -f noninteractive tzdata
 
+# locale nonsense for php repo
+RUN locale-gen --no-purge en_US.UTF-8
+ENV LC_ALL en_US.UTF-8
+ENV LANG en_US.UTF-8
+ENV DEBIAN_FRONTEND noninteractive
+
 # update apt
 RUN apt-add-repository -y ppa:ondrej/php5-5.6
-RUN apt-get update && apt-get dist-upgrade -y --force-yes
-RUN apt-get install -qqy --force-yes curl git php5-cli php5-common php5-fpm php5-cgi php-apc php-pear php5-imagick php5-mysql php5-curl php5-mcrypt php5-sqlite php5-gd php5-imap php5-xsl ca-certificates wget nginx nodejs npm
+RUN apt-get update
+RUN apt-get install -qqy --force-yes curl git php5-cli php5-common php5-fpm ca-certificates nginx
 
 RUN sed -i '/short_open_tag = Off/c\short_open_tag = On' /etc/php5/cli/php.ini
 RUN sed -i '/error_reporting = E_ALL & ~E_DEPRECATED & ~E_STRICT/c\error_reporting = E_ALL & ~E_DEPRECATED & ~E_STRICT & ~E_NOTICE' /etc/php5/cli/php.ini
@@ -33,7 +39,7 @@ ADD src /myapp/src/
 ADD docker /myapp/docker/
 ADD public /myapp/public/
 
-ADD composer.json composer.lock /orca/
+ADD composer.json composer.lock /myapp/
 RUN /bin/bash -l -c "cd /myapp && /usr/local/composer.phar install --no-dev && /usr/local/composer.phar dump-autoload --no-dev --optimize"
 
 EXPOSE 80
