@@ -1,0 +1,21 @@
+{
+  "id": "dockeraustin",
+  "cpus": 1,
+  "mem": 256,
+  "instances": 2,
+  "backoffSeconds": 5,
+  "backoffFactor": 1.2,
+  "upgradeStrategy": {
+    "minimumHealthCapacity": 0.5
+  },
+  "container": {
+    "type": "DOCKER",
+    "docker": {
+      "image": "quay.io/jimbojsb/dockeraustin",
+      "network": "BRIDGE",
+      "portMappings": [
+        { "containerPort": 80, "hostPort": 0, "servicePort": 80 }
+      ]
+    }
+  }
+}
