@@ -3,7 +3,7 @@
     "jimbojsb/adore": "dev-master"
   },
   "autoload": {
-    "psr4": {
+    "psr-0": {
       "MyApp": "src/"
     }
   }

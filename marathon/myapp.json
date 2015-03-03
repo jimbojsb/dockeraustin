@@ -11,7 +11,7 @@
   "container": {
     "type": "DOCKER",
     "docker": {
-      "image": "quay.io/jimbojsb/dockeraustin:r04",
+      "image": "quay.io/jimbojsb/dockeraustin:r05",
       "network": "BRIDGE",
       "portMappings": [
         { "containerPort": 10001, "hostPort": 0, "servicePort": 80 }
