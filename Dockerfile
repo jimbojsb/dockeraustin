@@ -35,8 +35,12 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 # Clean up APT when done.
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
+
+# enable nginx and php5-fpm runit
+ADD docker/nginx.sh /etc/service/nginx/run
+ADD docker/php-fpm.sh /etc/service/php5-fpm/run
+
 ADD src /myapp/src/
-ADD docker /myapp/docker/
 ADD public /myapp/public/
 
 ADD composer.json composer.lock /myapp/
